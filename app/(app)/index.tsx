@@ -1,11 +1,20 @@
 import Feather from "@expo/vector-icons/Feather";
-import { Colors } from "constants/Colors";
-import { StatusBar } from "expo-status-bar";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import Button from "src/components/Button";
+import { Colors } from "constants/Colors";
+import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function App() {
+ 
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.wrapper}>
@@ -73,7 +82,7 @@ export default function App() {
 
         <View style={styles.imageContainer}>
           <Image
-            source={require("../assets/im1.png")}
+            source={require("../../assets/im1.png")}
             alt="Home image"
             style={styles.image}
           />
@@ -89,7 +98,20 @@ export default function App() {
         >
           Let's Create motivation for your productivity
         </Text>
-        <Button title="Get Started" />
+        <Link href={"/onboarding"} asChild>
+          <Pressable
+          //onPress={onPress} // Handles button press if standalone
+          >
+            <LinearGradient
+              colors={["#6a11cb", "#2575fc"]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.button}
+            >
+              <Text style={styles.text}>Get Started</Text>
+            </LinearGradient>
+          </Pressable>
+        </Link>
       </View>
       <StatusBar style="light" backgroundColor={Colors.primary} />
     </View>
@@ -149,5 +171,17 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 40,
   },
-  button: {},
+  button: {
+    width: 200,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 40,
+  },
+  text: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
