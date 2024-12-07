@@ -5,16 +5,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View
-} from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 export default function App() {
- 
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.wrapper}>
@@ -94,6 +87,7 @@ export default function App() {
             color: "white",
             fontWeight: "700",
             fontSize: 45,
+            fontFamily: "MontBold",
           }}
         >
           Let's Create motivation for your productivity
