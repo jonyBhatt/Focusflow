@@ -1,4 +1,5 @@
 import { Colors } from "constants/Colors";
+import { useRouter } from "expo-router";
 import React, { useState, useRef } from "react";
 import {
   View,
@@ -55,12 +56,14 @@ interface OnboardingScreenProps {
 }
 
 const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onComplete }) => {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const flatListRef = useRef<FlatList<OnboardingItem>>(null);
 
   const handleContinueWithEmail = () => {
     // Implement email continuation logic
     console.log("Continue with Email pressed");
+    router.push("/auth/register");
     // Typically, you'd navigate to an email login/signup screen
     onComplete?.();
   };
@@ -90,10 +93,12 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onComplete }) => {
   const renderOnboardingItem = ({ item }: { item: OnboardingItem }) => (
     <View style={styles.itemContainer}>
       <Image source={item.image} style={styles.image} resizeMode="contain" />
-      <View style={{
-        flex:1,
-        marginTop:30
-      }}>
+      <View
+        style={{
+          flex: 1,
+          marginTop: 30,
+        }}
+      >
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>
       </View>
@@ -133,7 +138,7 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   container: {
-    flex:1,
+    flex: 1,
     backgroundColor: Colors.primary,
   },
   itemContainer: {
@@ -147,7 +152,7 @@ const styles = StyleSheet.create({
   image: {
     width: width * 0.8,
     height: height * 0.4,
-    marginTop:50
+    marginTop: 50,
   },
   title: {
     fontFamily: "PlayBold",
